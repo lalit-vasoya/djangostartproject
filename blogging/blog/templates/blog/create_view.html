@@ -1,0 +1,12 @@
+<center><h1>Create A Post</h1></center>
+<div style="border:2px solid gray;padding:10px;">
+{% if messages %}
+    {% for i in messages %}{{ i}}{% endfor %}
+{% endif %}
+<form method="POST" action=".">
+{% csrf_token %}
+{{ form.as_p}}
+<button type="submit">Create Post</button>
+</form>
+</div>
+<a href="{% url 'blog:home' %}">Blog</a>

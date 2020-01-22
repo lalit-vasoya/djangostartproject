@@ -1,0 +1,7 @@
+<h2>Delete {{ post.title }}?</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    Are You Sure to Delete This Post<br>
+    <button type="submit">Delete</button> <a href="{% url 'blog:home' %}">Cancle</a>
+</form>

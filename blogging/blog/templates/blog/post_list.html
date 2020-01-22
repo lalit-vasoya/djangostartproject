@@ -1,7 +1,15 @@
 <center><h1>Post List</h1></center>
-
+<center><h3><a href="{% url 'blog:create_view' %}">Create a Post</a></h3></center>
+<h3>
+{% if messages %}
+    {% for i in messages %}{{ i}}{% endfor %}
+{% endif %}</h3>
 {% for i in query %}
     <hr>
-    <li>{{ i.title }} <a href="{% url 'detail_view' i.id %}">{{ forloop.counter}}</a></li>
+    <li>
+        <a href="{% url 'blog:detail_view' i.id %}">{{ i.title }} </a>|    
+        <a href="{% url 'blog:update_view' i.id %}">Update</a>|
+        <a href="{% url 'blog:delete_view' i.id %}">Delete</a>
+    </li>
 {% endfor %}
 <hr>
