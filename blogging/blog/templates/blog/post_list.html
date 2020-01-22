@@ -1,0 +1,7 @@
+<center><h1>Post List</h1></center>
+
+{% for i in query %}
+    <hr>
+    <li>{{ i.title }} <a href="{% url 'detail_view' i.id %}">{{ forloop.counter}}</a></li>
+{% endfor %}
+<hr>
