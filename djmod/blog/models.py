@@ -1,10 +1,12 @@
 from django.db import models
+from django.conf import settings
 from django.utils.encoding import smart_text
 from django.utils import timezone
 from django.utils.text import slugify
 from django.db.models.signals import pre_save,post_save
 from django.utils.timesince import timesince
 from .validation import validate_the_author_email
+
 PUBLISH_CHOICES=(
     ('draft','Draft'),
     ('publish','Publish'),

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import PostModel
-# Register your models here.
+#Register your models here.
 
 class PostModelAdmin(admin.ModelAdmin):
 
@@ -17,4 +17,5 @@ class PostModelAdmin(admin.ModelAdmin):
     class Meta:
         model=PostModel
 
-admin.site.register(PostModel,PostModelAdmin )
+
+admin.site.register(PostModel,PostModelAdmin)
