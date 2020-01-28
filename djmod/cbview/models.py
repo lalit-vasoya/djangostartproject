@@ -12,13 +12,14 @@ from django.db.models.signals import pre_save
 class Book(models.Model):
     added_by        = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,related_name="book_add",on_delete=models.CASCADE)
     last_edited_by  = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True,related_name="book_edit",on_delete=models.CASCADE)
-    title           = models.CharField(max_length=120)
-    description     = models.TextField(null=True,blank=True)
+    title           = models.CharField(max_length=120,verbose_name="Title of Book")
+    description     = models.TextField(null=True,blank=True,)
     slug            = models.SlugField()
     updated         = models.DateTimeField(auto_now_add=False,auto_now=True)
     timestamp       = models.DateTimeField(auto_now_add=True,auto_now=False)
 
     class Meta:
+        verbose_name="Book"
         ordering=["-id"]
 
     def __str__(self):

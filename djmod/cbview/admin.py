@@ -11,4 +11,4 @@ class BookAdmin(admin.ModelAdmin):
 
     form=BookForm
 
-admin.site.register(Book,BookAdmin)        
+admin.site.register(Book)#,BookAdmin)        
