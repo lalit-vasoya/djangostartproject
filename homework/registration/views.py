@@ -25,19 +25,19 @@ class LoginView(View):
         return  render(request,'registration/login.html',{'form':lform})
 
     def post(self,request):
-        form1=AuthenticationForm(data=request.POST)
+        form1=LoginForm(data=request.POST)
         if form1.is_valid():
             contact=form1.cleaned_data.get('contact')
             password=form1.cleaned_data.get('password')
             user=authenticate(contact=contact,password=password)
             if user is not None: 
                 login(request,user)
+                redirect('registration')
             else:
-                messages.error(request,'User Not Found please Enter Valid data')
+                messages.error(request,'User Not Found please Enter Valid data'+str(form1.errors))
         return  render(request,'registration/login.html',{'form':form1})
         
 class LogoutView(View):
-
     def get(self,request):
         logout(request)
         return redirect("login")

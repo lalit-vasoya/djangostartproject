@@ -22,11 +22,11 @@ class RegistrationForm(UserCreationForm):
     #     return num
 
 class LoginForm(forms.Form):
-    username=forms.CharField(max_length=20,label="Enter Username")
-    phonenumber=forms.CharField(max_length=12,validators=[phonenumberrexp],label="Enter Mobile")
+    # username=forms.CharField(max_length=20,label="Enter Username")
+    contact=forms.CharField(max_length=12,validators=[phonenumberrexp],label="Enter Contact")
     password=forms.CharField(max_length=20,label="Enter Password",widget=forms.PasswordInput())
     # class Meta:
-    #     #model=User
-    #     fields=['username','phonenumber','password']
+    #     model=User
+    #     fields=['contact','password']
     
 
