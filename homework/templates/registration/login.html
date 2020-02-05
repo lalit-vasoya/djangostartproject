@@ -1,17 +1,27 @@
-<h1>Welcome</h1>
-{% if messages %}
+{% extends 'registration/base.html' %}
+{% block body %}
+<div class="col-md-12">
+    <center>
+    {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        <div class="alert alert-warning">
+            <a href="#" class="alert-link">{{ message }}</a>.
+        </div>
+    <!-- <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
         {{ message }}
-    </li>
+    </li> -->
     {% endfor %}
 </ul>
 {% endif %}
+<hr>
+<h1>Login</h1>
+<hr>
+<table>
 <form method="POST">
     {% csrf_token %}
-        <table>
+       
     {% for field in form %}
         <tr>
             <td>
@@ -26,12 +36,12 @@
         </tr>
     {% endfor%}
     <tr>
-        <td rowspan="3">
-            <button type="submit">Login</button>
+        <td colspan="3">
+            <center><button type="submit" class="btn btn-primary">Login</button></center>
         </td>        
     </tr>
-  
 </form>
-</table>
-<a href="{% url 'logout' %}">Logout</a>
-<a href="{% url 'registration' %}">Sign Up</a>
+
+</div>
+</center>
+{% endblock body %}
