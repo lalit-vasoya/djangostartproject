@@ -1,47 +1,55 @@
 {% extends 'registration/base.html' %}
+{% load static %}
+{% block script %}
+<!-- <script src="{% static 'js/validation.js' %}"></script> -->
+{% endblock script %}
+
+
 {% block body %}
 <div class="col-md-12">
     <center>
-    {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-        <div class="alert alert-warning">
-            <a href="#" class="alert-link">{{ message }}</a>.
-        </div>
-    <!-- <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        {{ message }}
-    </li> -->
-    {% endfor %}
-</ul>
-{% endif %}
-<hr>
-<h1>Login</h1>
-<hr>
-<table>
-<form method="POST">
-    {% csrf_token %}
-       
-    {% for field in form %}
-        <tr>
-            <td>
-                {{ field.label}}
-            </td>
-            <td>
-                {{ field }}
-            </td>
-            <td>
-                {{ field.errors }}
-            </td>
-        </tr>
-    {% endfor%}
-    <tr>
-        <td colspan="3">
-            <center><button type="submit" class="btn btn-primary">Login</button></center>
-        </td>        
-    </tr>
-</form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning">
+                <a href="#" class="alert-link">{{ message }}</a>.
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if not user.is_authenticated %}
+        <hr>
+        <h1>Login</h1>
+        <hr>
+        <p id="error"></p>
+        <table>
+            <form method="POST">
+                {% csrf_token %}
 
+                {% for field in form %}
+                <tr>
+                    <td>
+                        {{ field.label}}
+                    </td>
+                    <td style="padding: 10px;">
+                        {{ field }}
+                    </td>
+                    <td>
+                        {{ field.errors }}
+                    </td>
+                </tr>
+                {% endfor%}
+                <tr>
+                    <td colspan="3">
+                        <center><button type="submit" class="btn btn-primary">Login</button></center>
+                    </td>
+                </tr>
+            </form>
 </div>
+{% else %}
+<hr>
+<h1>Welcome {{ user.first_name|title  }} {{ user.last_name|title }}</h1>
+<hr>
+{% endif%}
 </center>
 {% endblock body %}

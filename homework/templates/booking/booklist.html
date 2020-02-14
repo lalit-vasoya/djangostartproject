@@ -1,0 +1,56 @@
+{% extends 'registration/base.html' %}
+{% block body %}
+<script>
+    var timeslot = {
+        1: '10 AM-11 AM', 2: '11 AM-12 PM', 3: '12 PM-01 PM', 4: '01 PM-02 PM', 5: '02 PM-03 PM', 6: '03 PM-04 PM', 7: '04 PM-05 PM', 8: '05 PM-06 PM', 9: '06 PM-07 PM'
+    }
+</script>
+
+<div class="col-md-12">
+    <center>
+
+        {% if object_list %}
+        <hr>
+        <div class="alert alert-info">
+            <strong>
+                <h2>Detail of Your Cleaner List...</h2>
+            </strong>
+        </div>
+        <hr>
+        <table class="table table-hover" style="width:70%;">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Cleaner First Name</th>
+                    <th>Cleaner Last Name</th>
+                    <th>Cleaner City</th>
+                    <th>Time Slot</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <body>
+                {% for i in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.cleaner.user.first_name }}</td>
+                    <td>{{ i.cleaner.user.last_name }}</td>
+                    <td>{{ i.cleaner.city }}</td>
+                    <td style="font-weight:bold;">
+                        <script>document.write(timeslot[{{ i.timeslot }}])</script>
+                    </td>
+                    <td style="font-weight:bold;">{{ i.date }}</td>
+                </tr>
+                {% endfor %}
+            </body>
+        </table>
+        {% else %}
+        <div class="alert alert-warning">
+            <strong>
+                <h2>You have not any Booked Cleaner ...</h2>
+            </strong>
+        </div>
+        {% endif %}
+    </center>
+</div>
+{% endblock body %}

@@ -1,0 +1,5 @@
+from registration.models import CityModel 
+>>> from registration.models import User 
+>>> from registration.models import CleanerModel 
+>>> from booking.models import BookingModel 
+

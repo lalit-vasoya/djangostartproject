@@ -1,0 +1,66 @@
+{% extends 'registration/base.html' %}
+{% block body %}
+<script>
+    var timeslot={
+        1:'10 AM-11 AM',2:'11 AM-12 PM',3:'12 PM-01 PM',4:'01 PM-02 PM',5:'02 PM-03 PM',6:'03 PM-04 PM',7:'04 PM-05 PM',8:'05 PM-06 PM',9:'06 PM-07 PM'    }
+</script>
+<div class="col-md-12">
+<center>
+<hr>
+    <h1>Confirm of {{ cleaner.user.first_name|title }}</h1><h2>(Cleaner)</h2>
+<hr>
+<table class="table table-hover" style="width:70%;">
+    <tr>
+        <td>City</td>
+        <td style="font-weight:bold;">{{ cleaner.city }}</td>
+    </tr>  
+    <tr>
+        <td>Time slot</td>
+        <td style="font-weight:bold;"><script>document.write(timeslot[{{ request.session.timeslot }}])</script></td>
+    </tr>        
+    <tr>
+        <td>Date</td>
+        <td style="font-weight:bold;">{{ request.session.date }}</td>
+    </tr>  
+        <tr>
+            <td>Name</td>
+            <td>{{ cleaner.user.first_name|title }}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{ cleaner.user.last_name|title }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ cleaner.user.email }}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td style="font-weight:bold;">{{ cleaner.user.contact}}</td>
+        </tr> 
+        <tr>
+            <td>Quality Score</td>
+            <td style="font-weight:bold;"> 
+                {% for j in range %}
+                    {% if cleaner.quality_score > j %}
+                        <i class="fas fa-star"></i>
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>  
+        <tr>
+            <td colspan="2">
+            <center><a href={% url 'booking:bookcleaner' cleaner.pk %} class="btn btn-primary stretched-link">Confirm and Book Cleaner</a></center>
+            </td>
+        </tr>                 
+    </table>
+    <input type="hidden" name="city" value="{{ city }}">
+    <input type="hidden" name="date" value="{{ date }}">
+    <input type="hidden" name="timeslot" value="{{ timeslot }}">
+
+</form>
+</center>
+{% endblock body %}
+

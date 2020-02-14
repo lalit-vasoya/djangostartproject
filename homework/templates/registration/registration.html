@@ -1,12 +1,26 @@
 {% extends 'registration/base.html'%}
+{% load static %}
+{% block script %}
+{% endblock script %}
+
 {% block body %}
-  
+  {{ filename }}
   <div class="col-md-12">
     <center>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    <a href="#" class="alert-link">{{ message }}</a>.
+                </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
     <hr>
     <h1>Sign Up</h1>
     <hr>
-    <form method="POST">
+    <p id="error"></p>
+    <form method="POST" id="singup">
         {% csrf_token %}
             <table>
         {% for field in form %}
@@ -14,7 +28,7 @@
                 <td>
                     {{ field.label}}
                 </td>
-                <td>
+                <td style="padding: 10px;">
                     {{ field }}
                 </td>
                 <td>
@@ -24,7 +38,7 @@
         {% endfor%}
         <tr>
             <td colspan="3">
-                <center><button type="submit" class="btn btn-primary">Sign Up</button></center>
+                <center><button type="submit"  id="id_submit" class="btn btn-primary">Sign Up</button></center>
             </td>        
         </tr>    
     </form>

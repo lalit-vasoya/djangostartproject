@@ -7,10 +7,10 @@ app_name='registration'
 
 urlpatterns = [
     path('',LoginView.as_view(),name='index'),
-    path('signup',RegistrationView.as_view(),name='signup'),   
+    path('registration',RegistrationView.as_view(),name='registration'),   
     path('login',LoginView.as_view(),name="login"),
-    path('signout',LogoutView.as_view(),name="signout"),
+    path('logout',LogoutView.as_view(),name="logout"),
     path('profile/<int:pk>',ProfileDetailView.as_view(),name='profile'),
-    path('cleanercreate/',CleanerCreate.as_view(),name='cleanercreate')
+    path('cleanercreate/',CleanerCreate.as_view(),name='cleanercreate'),
 ]
 # static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
